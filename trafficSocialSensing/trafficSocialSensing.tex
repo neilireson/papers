@@ -1,0 +1,138 @@
+\documentclass{article}
+
+% Use this command to override the default ACM copyright statement (e.g. for preprints). 
+% Consult the conference website for the camera-ready copyright statement.
+
+
+%% EXAMPLE BEGIN -- HOW TO OVERRIDE THE DEFAULT COPYRIGHT STRIP -- (July 22, 2013 - Paul Baumann)
+% \toappear{Permission to make digital or hard copies of all or part of this work for personal or classroom use is 	granted without fee provided that copies are not made or distributed for profit or commercial advantage and that copies bear this notice and the full citation on the first page. Copyrights for components of this work owned by others than ACM must be honored. Abstracting with credit is permitted. To copy otherwise, or republish, to post on servers or to redistribute to lists, requires prior specific permission and/or a fee. Request permissions from permissions@acm.org. \\
+% {\emph{CHI'14}}, April 26--May 1, 2014, Toronto, Canada. \\
+% Copyright \copyright~2014 ACM ISBN/14/04...\$15.00. \\
+% DOI string from ACM form confirmation}
+%% EXAMPLE END -- HOW TO OVERRIDE THE DEFAULT COPYRIGHT STRIP -- (July 22, 2013 - Paul Baumann)
+
+
+% Arabic page numbers for submission. 
+% Remove this line to eliminate page numbers for the camera ready copy
+\pagenumbering{arabic}
+
+
+% Load basic packages
+\usepackage{balance}  % to better equalize the last page
+% \usepackage{graphics} % for EPS, load graphicx instead
+\usepackage{times}    % comment if you want LaTeX's default font
+\usepackage{url}      % llt: nicely formatted URLs
+\usepackage{multirow}
+\usepackage{enumerate}% http://ctan.org/pkg/enumerate
+\usepackage{natbib}
+\usepackage{graphicx}
+\graphicspath{ {images/} }
+\usepackage{gensymb}
+
+% Make sure hyperref comes last of your loaded packages, 
+% to give it a fighting chance of not being over-written, 
+% since its job is to redefine many LaTeX commands.
+\usepackage[pdftex]{hyperref}
+
+% End of preamble. Here it comes the document.
+\begin{document}
+
+% first the title is needed
+\title{Social Sensing of Traffic}
+
+\maketitle
+
+\begin{abstract}
+
+Abstract
+
+\end{abstract}
+
+\section{Introduction}
+
+There is a long history of citizens providing information concerning their experience of traffic conditions. As early as the 1960s Citizen Band (CB) radio was used to report traffic conditions, this information being propagated via general public radio stations. As mobile devices became ubiquitous such monitoring became even more widespread, and with the advent of smartphones web-GIS based applications, such as WAZE (www.waze.com) have successfully provided real-time incident information. More recently social media is being utilised as a source of information concerning mobility issues. Extracting the mobility related information from social media removes the reliance on citizens having to specificly communicate monility information. The following section will discuss the possible uses of social media for mobility and how this work is being applied and extending within SETA.
+
+\section{Related Work}
+
+\cite{rashidi2017exploring} provides a recent comprehensive overview of the research into using social media for modelling traffic related behaviour. There are four main area of research which are of interest within SETA: (i) aggregate mobility behaviour; (ii) individual-based activity behaviour; (iii) traffic conditions; and (iv) incident detection and monitoring.
+
+The research into aggregate mobility behaviour ranges from examining international mobility patterns using large-scale data, e.g. \cite{hawelka2014geo} used almost 1 billion tweets from 13 million users, to national patterns, e.g. \cite{jurdak2015understanding} studied (Australian) national mobility patterns using around 8 million tweets (from 150 thousand users) from 2013/2014. The research showed that geotagged tweets have similar overall features as observed in mobile phone records, which demonstrates that Twitter is a suitable proxy for studying human mobility. Of more interest to SETA are smaller scale mobility patterns, \cite{lenormand2014cross} compare mobile phone, twitter and census data showing a strong correlation between these data sources to infer population concentration and temporal distribution patterns, both Twitter and mobile phone data reproduce the commuting networks at the municipal scale from an overall perspective. 
+
+The has been less work looking into individual-based activity behaviour as social media messages for individuals are general too sparse to be used for mobility analysis. \cite{compton2014geotagging} overcomes the sparsity, to some extent, by infering an unknown user’s location by examining their friend’s locations. Determining individual mobility patterns does however offer the possibility of personalisation of services if those services are provided access to the individual's social media stream/network.
+
+The use of social media to estimate traffic conditions, either in general citywide areas \citep{wang2015citywide} or at specific road network links \citep{chen2014road}, has shown some positive results. However, the use of mobile phone GPS data provides orders of magnitude more data than is available from social media and therefore this area seems of little practical benefit.
+
+Of more direct interest within SETA and a more potentially fruitful area of research is acquiring real-time information about incidents. In general, event detection from social media has received considerable attention with most existing research on this topic focusing on large-scale event detection, i.e. large numbers of social media messages with a wide geographic coverage. The approaches to event detection can be broadly classified into three sub-categories: burst detection, geographic topic modelling, and clustering. Burst detection-based approaches search for space-time regions where the aggregated counts of several predefined terms are abnormally high compared with the counts for the same terms outside those regions \citep{lappas2012spatiotemporal}. In the seminal work in this area \cite{sakaki2010earthquake} consider spatial-temporal Kalman filtering, which is similar to space-time burst detection, to track the geographical trajectory of hot spots of tweets related to earthquakes. Geographic topic model-based approaches determine geographic distinct language distributions \citep{yin2011geographical,hong2012discovering}. Clustering-based approaches group terms or messages according to similarity metrics, such as cosine similarity and social similarity \citep{yin2011geographical}, or auto-correlations \citep{weng2011event} and co-occurrences \citep{sayyadi2009event,watanabe2011jasmine}. There have been fewer studies focusing on small-scale event detection. In general, the approaches combine statistical and machine learning techniques with Natural Language Processing (NLP) methods to extract features from tweets and identify tweets relevant to local or small-scale events \citep{agarwal2012catching, schulz2013see}. \cite{fu2015social} studied the feasibility of detecting and managing traffic incidents more effectively based on extra information that can obtain from related Twitter data. They focused on tweets that contain incident related keywords. A similar approach was taken by \cite{mai2013twitter} by comparing recorded incidents by California Highway Patrol (CHP) with related tweets via visualising the density of incidents and tweets coincide near the same location. \cite{steur2015twitter} used a similar approach in the Netherlands and \cite{chen2014road} in China, their results indicate that accident information in Twitter was helpful in predicting congested links with a precision of around 50\%. A number of researchers have also used social media to indicate reasons for traffic anomalies \citep{daly2013westland, pan2013crowd, wang2015tweeting}. This research indicates that social media provides an inexpensive, readily accessible, broad geographic coverage and a uniquely passenger-centric perspective, that can be useful for early incident detection and can be used as additional source of information for incident management, this area of research, i.e. event/incident detection, will be the focus of the work in SETA.
+
+\section{Data}
+
+\subsection{Traffic Incident Data}
+
+There are numerous potential causes of traffic incidents:
+\begin{enumerate}
+	\item Accidents
+	\item Road work
+	\item Adverse Weather
+	\item Events: e.g. football match
+	\item Other: e.g. broken-down, obstructing or gridlocked vehicles
+\end{enumerate}
+
+The work in SETA will focus on unplanned incidents, as many of the causes of incidents mentioned above can be known in advance from official sources, e.g. scheduled road works and events, or the increasingly accurate predictions from weather services. Initially focus will be on the UK, with consideration given to the portablility of the approaches adopted to other regions/languages. 
+
+There are official governmental services in the UK which report road incidents. Traffic Update (www.traffic-update.co.uk) aggregates Highways Agency datasets (as well as Traffic Scotland, Transport for London (TfL) and Traffic Wales to information about accidents, roadworks, traffic hotspots and highways repairs. Aggregating data (every 5-10 minutes) from this publicly-available data, complementing it with extra information (such as traffic flow, speed cameras, regional weather, transport options, email alerts, etc.). Historic accident data is also available as part of the UK Government OpenData initiative (data.gov.uk/dataset/road-accidents-safety-data). This data provides the Golden Standard, SETA will examine whether social media can enhance these official information sources by providing more timely and further information about incidents.
+
+There has been an continual decrease in the number of accidents on UK roads over the past decade as can be seen in figure \ref{fig:MonthlyAccidents}, Falling at around 3\% each year from 198,735 accidents in 2005 to 140,056 in 2015. Note that this data only includes incidents which are reported to the police and where there is at least one casualty involved. It also shows a strong seasonal pattern with lower numbers of accidents in December, January and February and a steady increase in accidents from March to November, which is consistently the worst month for accidents.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{MonthlyAccidents.jpg}
+    \caption{Monthly UK Traffic Accidents 2005-2015}
+    \label{fig:MonthlyAccidents}
+\end{figure}
+
+Figure \ref{fig:HourlyAccidents} shows the average hourly accidents for each day of the week. As would be expected the accidents are more frequent during the day and peak during the morning and evening commuting periods. There are less accidents during the weekend and the pattern of accidents smoothly increases towards midday without the commuting peaks.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{HourlyAccidents.jpg}
+    \caption{Average Hourly UK Traffic Accidents 2005-2015}
+    \label{fig:HourlyAccidents}
+\end{figure}
+
+Figure \ref{fig:UKAccidents} shows the distribution of traffic accidents, as would be expected these are concentrated around the population centres, there should therefore be a strong correlation between the amount of accidents and volume of social media messages for a given location.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.75\textwidth]{UKAccidents.jpg}
+    \caption{Heatmap of UK Traffic Accidents in 2005-2015}
+    \label{fig:UKAccidents}
+\end{figure}
+
+\subsection{Social Media Data}
+
+The Social Media data was recorded from Twitter using their API, which provides free access to 1\% of the full (firehose) Twitter feed. The messages can be filtered using a set of keywords, user ids and location boxes. The default public access level allows up to 400 keywords, 5,000 user ids and 25 0.1-360 degree location boxes. For the initial experiments used a previous acquired data set, where the criteria used for filtering tweets was to select those geocoded within a boundary-box around the UK (49.923{\degree}S, 10.810{\degree}W, 59.467{\degree}N, 1.824{\degree}E). The data covers the 8 month period from 1st$^{st}$ January 2014 up to 1$^{st}$ September 2014, this results in a total of slightly over 150 million geocoded tweets (approx. 560,000 per day). During that time there were two partial day outages on the collection server, those days has been excluded from consideration.
+
+\section{Methodology}
+
+In order to infer whether an accident has occurred at a given location a language model is created by calculating the message terms with high spatio-temporal correlation to known accidents, only unigrams are considered. A coefficient for each term is calculated from the relative-likelihood of the term being observed in messages which are proximate in time and space to an accident. In addition the severity of the accident can also be considered. 
+
+
+
+\section{Results}
+
+
+\section{Discussion, Limitations \& Further Work}
+
+
+
+\section{Conclusion}
+
+
+\balance
+
+% produce the bibliography for the citations in your paper.
+\bibliographystyle{plainnat}
+% or: plain,unsrt,alpha,abbrv,acm,apalike,...
+\bibliography{trafficSocialSensing}
+
+\end{document}
