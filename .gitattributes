@@ -1,2 +1,2 @@
-*.tex
-*.bib
+*.tex filter=git-crypt diff=git-crypt
+*.bib filter=git-crypt diff=git-crypt
